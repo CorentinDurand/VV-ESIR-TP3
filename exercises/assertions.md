@@ -18,7 +18,7 @@ To handle floating-point comparisons correctly, it's better to check if the two 
 2. The assertEquals method checks if the expected and actual objects are equal using the equals() method. On the other hand, assertSame checks if both references point to the same object in memory. So, even if two objects are considered equal, assertSame will fail if they are not the same instance.
 
 Example
-
+```java
 class TestAssertEqualsAndSame {
 
  @Test
@@ -43,3 +43,4 @@ class TestAssertEqualsAndSame {
   assertSame(new String("1"), new String("1"));
  }
 }
+```
