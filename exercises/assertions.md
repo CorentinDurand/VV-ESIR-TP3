@@ -44,3 +44,18 @@ class TestAssertEqualsAndSame {
  }
 }
 ```
+
+3. If there are conditions where the code should never reach a particular point, fail() can be used to mark that unreachable section.
+
+Example: You're working on a project and certain conditions should never occur. You can use fail() to verify that this unexpected case isn't reached:
+
+```python
+   def process_data(input_data):
+    if input_data == "valid":
+        return "Processed"
+    elif input_data == "invalid":
+        return "Error"
+    else:
+        # This should never happen
+        fail("Unexpected input received")
+  ```
