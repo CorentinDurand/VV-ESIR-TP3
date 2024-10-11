@@ -86,3 +86,4 @@ erreur
         assertThrows(ConcurrentModificationException.class, () -> iter3.next(),
                 "next after retainAll should raise ConcurrentModification");
     }```
+.\java\org\apache\commons\collections4\iterators\AbstractMapIteratorTest.java:828:	JUnitUseExpected:	In JUnit4, use the @Test(expected) annotation to denote tests that should throw exceptions
