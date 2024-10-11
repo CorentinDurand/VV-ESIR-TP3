@@ -14,11 +14,13 @@ Discuss the test smell you found with the help of PMD and propose here an improv
 Include the improved test code in this file.
 
 ## Answer
-Correction
-Ajouter ceci
-```java @Test(expected = ConcurrentModificationException.class | NoSuchElementException.class)```
-Supprimer le try catch de la methode
-erreur
+
+Après l'utilisation de PMD sur le projet `Apache Commons Collections` avec la règle `JUnitUseExpected`, On remarque plusieurs endroits dans le projet qui gèrent les exceptions à la main avec `try catch` au lieu d'utiliser `@Test(expected = ExampleOfException.class)`. On se penche ici sur l'exception suivante :
+
+`.\java\org\apache\commons\collections4\iterators\AbstractMapIteratorTest.java:828:	JUnitUseExpected:	In JUnit4, use the @Test(expected) annotation to denote tests that should throw exceptions`
+
+Voici le code concerné : 
+
 ```java
     @Test
     public void testCollectionIteratorFailFast() {
@@ -85,5 +87,14 @@ erreur
         getCollection().retainAll(sublist3);
         assertThrows(ConcurrentModificationException.class, () -> iter3.next(),
                 "next after retainAll should raise ConcurrentModification");
-    }```
-.\java\org\apache\commons\collections4\iterators\AbstractMapIteratorTest.java:828:	JUnitUseExpected:	In JUnit4, use the @Test(expected) annotation to denote tests that should throw exceptions
+    }
+```
+On identifie bien le try catch de la ligne 828. On peut améliorer ce cas de la manière suivante : \
+On remplace la première ligne initialement `@Test` par celle-ci :
+```java 
+@Test(expected = ConcurrentModificationException.class | NoSuchElementException.class)
+```
+Puis on supprime ensuite le try catch de la méthode.
+
+
+`
