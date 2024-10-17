@@ -57,33 +57,33 @@ To create an effective test suite for your `Date` class using *Input Space Parti
 The constructor will be the same as `isvalidDate`.
 
 For `isValidDate` Method :
-## Characteristics:
+#### Characteristics:
 * Valid/Invalid year
 * Valid/Invalid month
 * Valid/Invalid day for a given month, handling also different month lengths and leap years
-## Blocks:
+#### Blocks:
 * Year: valid (e.g., 2024), invalid (e.g., -1000)
 * Month: valid (1–12), invalid (<1, >12)
 * Day: valid for 30-day months, 31-day months, February in common years, February in leap years
 * Leap year logic: (year divisible by 4, but not 100 unless also divisible by 400)
 
 For `isLeapYear` Method :
-## Characteristics:
+#### Characteristics:
 * Divisibility by 4
 * Divisibility by 100
 * Divisibility by 400
-## Blocks:
+#### Blocks:
 * Divisible by 400 is a leap year
 * Divisible by 4 but not by 100, is a leap year
 * Divisible by 100 but not 400, is nott a leap year
 * Not divisible by 4, is not a leap year
 
 For `nextDate` Method :
-## Characteristics:
+#### Characteristics:
 * End of month transitions
 * End of year transitions
 * Leap year February transitions
-## Blocks:
+#### Blocks:
 * Non-leap year February 28 → March 1
 * Leap year February 28 → February 29
 * End of month (e.g., April 30 → May 1)
@@ -91,7 +91,7 @@ For `nextDate` Method :
 * Middle of month (e.g., June 15 → June 16)
         
 For `previousDate` Method:
-## Characteristics:
+#### Characteristics:
 * Start of month transitions
 * Start of year transitions
 * Leap year February transitions
@@ -103,12 +103,12 @@ For `previousDate` Method:
 * Middle of month (e.g., June 15 → June 14)
         
 For `compareTo` Method :
-## Characteristics:
+#### Characteristics:
 * Date earlier than other
 * Date equal to other
 * Date later than other
 * Null other argument
-## Blocks:
+#### Blocks:
 * `this < other` (e.g., January 1, 2020 vs. January 2, 2020)
 * `this == other` (e.g., February 15, 2022 vs. February 15, 2022)
 * `this > other` (e.g., March 10, 2021 vs. March 9, 2021)
@@ -150,3 +150,8 @@ public static boolean isLeapYear(int year) {
 ```
 The method uses sequential conditions rather than multiple boolean operators in one predicate. Therefore, these conditions don't require additional tests for complex boolean operators.
 So the new assert is : `assertFalse(Date.isValidDate(2023, 0, 15));`
+
+4.
+By running the mvn clean test pitest:mutationCoverage command, we can easily evaluate our test suite :
+![image](https://github.com/user-attachments/assets/f09ea072-481d-41e2-8c27-1188d40ce9f8)
+The mutation score is 80%, with 51 out of 64 mutations killed. Despite creating a new test case and refactoring the existing ones, we cannot increase the score.
