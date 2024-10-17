@@ -34,15 +34,15 @@ The first partition block considers whether the input string is empty or non-emp
 II- Presence of Grouping Symbols
 This partition block focuses on whether the string contains grouping symbols like parentheses, brackets, or braces. We divide this block into:
 
-- Strings with no grouping symbols: These are strings that contain only letters, numbers, or other non-grouping characters. Since no symbols need matching, such strings are considered balanced.\
-- Strings with only grouping symbols: These strings contain only parentheses, braces, or brackets, which are the core symbols the method must evaluate. The function should check whether these symbols are properly balanced or not.\
+- Strings with no grouping symbols: These are strings that contain only letters, numbers, or other non-grouping characters. Since no symbols need matching, such strings are considered balanced.
+- Strings with only grouping symbols: These strings contain only parentheses, braces, or brackets, which are the core symbols the method must evaluate. The function should check whether these symbols are properly balanced or not.
 - Strings with mixed content: These strings contain a mix of grouping symbols and non-grouping symbols. The function should ignore the non-grouping characters while checking for balance. This block ensures that the method handles realistic input containing a combination of symbols and regular text.
 
 III- Balanced vs. Unbalanced Grouping Symbols
 Within the non-empty strings containing grouping symbols, we further partition based on whether the symbols are properly balanced. A string is considered balanced if every opening symbol has a matching closing symbol in the correct order. The unbalanced cases are divided into several subcategories:
 
-- Missing closing brackets: These are cases where there are unmatched opening symbols that never get closed.\
-- Missing opening brackets: Here, closing symbols appear without a corresponding opening symbol.\
+- Missing closing brackets: These are cases where there are unmatched opening symbols that never get closed.
+- Missing opening brackets: Here, closing symbols appear without a corresponding opening symbol.
 - Improper nesting: These cases involve symbols that are not nested correctly, where an inner set of symbols is closed before an outer one. These subcategories ensure that both simple and complex unbalanced scenarios are tested.
 
 IV- Type of Grouping Symbols
