@@ -55,6 +55,7 @@ Use the project in [tp3-date](../code/tp3-date) to complete this exercise.
 1.
 To create an effective test suite for your `Date` class using *Input Space Partitioning*, we will divide the input space into characteristics and blocks for each method. Below is the breakdown for each method.
 The constructor will be the same as `isvalidDate`.
+
 For `isValidDate` Method :
     - Characteristics:
         * Valid/Invalid year
@@ -76,6 +77,7 @@ For `isLeapYear` Method :
         * Divisible by 4 but not by 100, is a leap year
         * Divisible by 100 but not 400, is nott a leap year
         * Not divisible by 4, is not a leap year
+
 For `nextDate` Method :
     - Characteristics:
         * End of month transitions
@@ -87,6 +89,7 @@ For `nextDate` Method :
         * End of month (e.g., April 30 → May 1)
         * End of year (e.g., December 31 → January 1)
         * Middle of month (e.g., June 15 → June 16)
+        
 For `previousDate` Method:
     - Characteristics:
         * Start of month transitions
@@ -98,6 +101,7 @@ For `previousDate` Method:
         * Start of month (e.g., May 1 → April 30)
         * Start of year (e.g., January 1 → December 31 of the previous year)
         * Middle of month (e.g., June 15 → June 14)
+        
 For `compareTo` Method :
     - Characteristics:
         * Date earlier than other
@@ -109,6 +113,7 @@ For `compareTo` Method :
         * `this == other` (e.g., February 15, 2022 vs. February 15, 2022)
         * `this > other` (e.g., March 10, 2021 vs. March 9, 2021)
         * `other == null` (should throw NullPointerException)
+        
 The Common Characteristics
     * Year: Common between `isValidDate`, `isLeapYear`
     * Month/Day transitions: Common between `nextDate`, `previousDate`
