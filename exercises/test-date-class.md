@@ -52,10 +52,9 @@ Use the following steps to design the test suite:
 Use the project in [tp3-date](../code/tp3-date) to complete this exercise.
 
 ## Answer
-1.
+### 1.
 To create an effective test suite for your `Date` class using *Input Space Partitioning*, we will divide the input space into characteristics and blocks for each method. Below is the breakdown for each method.
 The constructor will be the same as `isvalidDate`.
-
 For `isValidDate` Method :
 #### Characteristics:
 * Valid/Invalid year
@@ -95,7 +94,7 @@ For `previousDate` Method:
 * Start of month transitions
 * Start of year transitions
 * Leap year February transitions
-## Blocks:
+#### Blocks:
 * Non-leap year March 1 → February 28
 * Leap year March 1 → February 29
 * Start of month (e.g., May 1 → April 30)
@@ -119,14 +118,12 @@ The Common Characteristics
 * Month/Day transitions: Common between `nextDate`, `previousDate`
 * Leap year handling: Common between `isValidDate`, `isLeapYear`, `nextDate`, `previousDate`
 
-2.
-
+### 2.
 After assessing the previous test cases, we need to add new ones to enhance coverage.
 * Add a test case for negative year input in `isValidDate`
 * Add a test case for middle of the month in `nextDate` and `previousDate`
 
- 3.
-
+### 3.
 To assess *Base Choice Coverage*, we need to identify predicates containing more than two boolean operators.
 In `isValidDate` method :
 ```java
@@ -151,7 +148,8 @@ public static boolean isLeapYear(int year) {
 The method uses sequential conditions rather than multiple boolean operators in one predicate. Therefore, these conditions don't require additional tests for complex boolean operators.
 So the new assert is : `assertFalse(Date.isValidDate(2023, 0, 15));`
 
-4.
+### 4.
 By running the mvn clean test pitest:mutationCoverage command, we can easily evaluate our test suite :
 ![image](https://github.com/user-attachments/assets/f09ea072-481d-41e2-8c27-1188d40ce9f8)
+
 The mutation score is 80%, with 51 out of 64 mutations killed. Despite creating a new test case and refactoring the existing ones, we cannot increase the score.
