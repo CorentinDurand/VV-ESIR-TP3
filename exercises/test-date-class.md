@@ -57,64 +57,96 @@ To create an effective test suite for your `Date` class using *Input Space Parti
 The constructor will be the same as `isvalidDate`.
 
 For `isValidDate` Method :
--Characteristics:
+## Characteristics:
 * Valid/Invalid year
 * Valid/Invalid month
 * Valid/Invalid day for a given month, handling also different month lengths and leap years
-    - Blocks:
-        * Year: valid (e.g., 2024), invalid (e.g., -1000)
-        * Month: valid (1–12), invalid (<1, >12)
-        * Day: valid for 30-day months, 31-day months, February in common years, February in leap years
-        * Leap year logic: (year divisible by 4, but not 100 unless also divisible by 400)
+## Blocks:
+* Year: valid (e.g., 2024), invalid (e.g., -1000)
+* Month: valid (1–12), invalid (<1, >12)
+* Day: valid for 30-day months, 31-day months, February in common years, February in leap years
+* Leap year logic: (year divisible by 4, but not 100 unless also divisible by 400)
 
 For `isLeapYear` Method :
-    - Characteristics:
-        * Divisibility by 4
-        * Divisibility by 100
-        * Divisibility by 400
-    - Blocks:
-        * Divisible by 400 is a leap year
-        * Divisible by 4 but not by 100, is a leap year
-        * Divisible by 100 but not 400, is nott a leap year
-        * Not divisible by 4, is not a leap year
+## Characteristics:
+* Divisibility by 4
+* Divisibility by 100
+* Divisibility by 400
+## Blocks:
+* Divisible by 400 is a leap year
+* Divisible by 4 but not by 100, is a leap year
+* Divisible by 100 but not 400, is nott a leap year
+* Not divisible by 4, is not a leap year
 
 For `nextDate` Method :
-    - Characteristics:
-        * End of month transitions
-        * End of year transitions
-        * Leap year February transitions
-    - Blocks:
-        * Non-leap year February 28 → March 1
-        * Leap year February 28 → February 29
-        * End of month (e.g., April 30 → May 1)
-        * End of year (e.g., December 31 → January 1)
-        * Middle of month (e.g., June 15 → June 16)
+## Characteristics:
+* End of month transitions
+* End of year transitions
+* Leap year February transitions
+## Blocks:
+* Non-leap year February 28 → March 1
+* Leap year February 28 → February 29
+* End of month (e.g., April 30 → May 1)
+* End of year (e.g., December 31 → January 1)
+* Middle of month (e.g., June 15 → June 16)
         
 For `previousDate` Method:
-    - Characteristics:
-        * Start of month transitions
-        * Start of year transitions
-        * Leap year February transitions
-    - Blocks:
-        * Non-leap year March 1 → February 28
-        * Leap year March 1 → February 29
-        * Start of month (e.g., May 1 → April 30)
-        * Start of year (e.g., January 1 → December 31 of the previous year)
-        * Middle of month (e.g., June 15 → June 14)
+## Characteristics:
+* Start of month transitions
+* Start of year transitions
+* Leap year February transitions
+## Blocks:
+* Non-leap year March 1 → February 28
+* Leap year March 1 → February 29
+* Start of month (e.g., May 1 → April 30)
+* Start of year (e.g., January 1 → December 31 of the previous year)
+* Middle of month (e.g., June 15 → June 14)
         
 For `compareTo` Method :
-    - Characteristics:
-        * Date earlier than other
-        * Date equal to other
-        * Date later than other
-        * Null other argument
-    - Blocks:
-        * `this < other` (e.g., January 1, 2020 vs. January 2, 2020)
-        * `this == other` (e.g., February 15, 2022 vs. February 15, 2022)
-        * `this > other` (e.g., March 10, 2021 vs. March 9, 2021)
-        * `other == null` (should throw NullPointerException)
+## Characteristics:
+* Date earlier than other
+* Date equal to other
+* Date later than other
+* Null other argument
+## Blocks:
+* `this < other` (e.g., January 1, 2020 vs. January 2, 2020)
+* `this == other` (e.g., February 15, 2022 vs. February 15, 2022)
+* `this > other` (e.g., March 10, 2021 vs. March 9, 2021)
+* `other == null` (should throw NullPointerException)
         
 The Common Characteristics
-    * Year: Common between `isValidDate`, `isLeapYear`
-    * Month/Day transitions: Common between `nextDate`, `previousDate`
-    * Leap year handling: Common between `isValidDate`, `isLeapYear`, `nextDate`, `previousDate`
+* Year: Common between `isValidDate`, `isLeapYear`
+* Month/Day transitions: Common between `nextDate`, `previousDate`
+* Leap year handling: Common between `isValidDate`, `isLeapYear`, `nextDate`, `previousDate`
+
+2.
+
+After assessing the previous test cases, we need to add new ones to enhance coverage.
+* Add a test case for negative year input in `isValidDate`
+* Add a test case for middle of the month in `nextDate` and `previousDate`
+
+ 3.
+
+To assess *Base Choice Coverage*, we need to identify predicates containing more than two boolean operators.
+In `isValidDate` method :
+```java
+public static boolean isValidDate(int year, int month, int day) {
+    if (year < 0) return false;
+    if (month < 1 || month > 12) return false;
+    if (day < 1) return false;
+
+    int[] daysInMonth = {31, isLeapYear(year) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    return day <= daysInMonth[month - 1];
+}
+```
+We do not have a case where month < 1. This should be tested.
+In `isLeapYear` method :
+```java
+public static boolean isLeapYear(int year) {
+    if (year % 400 == 0) return true;
+    if (year % 100 == 0) return false;
+    return year % 4 == 0;
+}
+```
+The method uses sequential conditions rather than multiple boolean operators in one predicate. Therefore, these conditions don't require additional tests for complex boolean operators.
+So the new assert is : `assertFalse(Date.isValidDate(2023, 0, 15));`
