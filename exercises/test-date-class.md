@@ -52,4 +52,64 @@ Use the following steps to design the test suite:
 Use the project in [tp3-date](../code/tp3-date) to complete this exercise.
 
 ## Answer
+1.
+To create an effective test suite for your `Date` class using *Input Space Partitioning*, we will divide the input space into characteristics and blocks for each method. Below is the breakdown for each method.
+The constructor will be the same as `isvalidDate`.
+For `isValidDate` Method :
+    - Characteristics:
+        * Valid/Invalid year
+        * Valid/Invalid month
+        * Valid/Invalid day for a given month, handling also different month lengths and leap years
+    - Blocks:
+        * Year: valid (e.g., 2024), invalid (e.g., -1000)
+        * Month: valid (1–12), invalid (<1, >12)
+        * Day: valid for 30-day months, 31-day months, February in common years, February in leap years
+        * Leap year logic: (year divisible by 4, but not 100 unless also divisible by 400)
 
+For `isLeapYear` Method :
+    - Characteristics:
+        * Divisibility by 4
+        * Divisibility by 100
+        * Divisibility by 400
+    - Blocks:
+        * Divisible by 400 is a leap year
+        * Divisible by 4 but not by 100, is a leap year
+        * Divisible by 100 but not 400, is nott a leap year
+        * Not divisible by 4, is not a leap year
+For `nextDate` Method :
+    - Characteristics:
+        * End of month transitions
+        * End of year transitions
+        * Leap year February transitions
+    - Blocks:
+        * Non-leap year February 28 → March 1
+        * Leap year February 28 → February 29
+        * End of month (e.g., April 30 → May 1)
+        * End of year (e.g., December 31 → January 1)
+        * Middle of month (e.g., June 15 → June 16)
+For `previousDate` Method:
+    - Characteristics:
+        * Start of month transitions
+        * Start of year transitions
+        * Leap year February transitions
+    - Blocks:
+        * Non-leap year March 1 → February 28
+        * Leap year March 1 → February 29
+        * Start of month (e.g., May 1 → April 30)
+        * Start of year (e.g., January 1 → December 31 of the previous year)
+        * Middle of month (e.g., June 15 → June 14)
+For `compareTo` Method :
+    - Characteristics:
+        * Date earlier than other
+        * Date equal to other
+        * Date later than other
+        * Null other argument
+    - Blocks:
+        * `this < other` (e.g., January 1, 2020 vs. January 2, 2020)
+        * `this == other` (e.g., February 15, 2022 vs. February 15, 2022)
+        * `this > other` (e.g., March 10, 2021 vs. March 9, 2021)
+        * `other == null` (should throw NullPointerException)
+The Common Characteristics
+    * Year: Common between `isValidDate`, `isLeapYear`
+    * Month/Day transitions: Common between `nextDate`, `previousDate`
+    * Leap year handling: Common between `isValidDate`, `isLeapYear`, `nextDate`, `previousDate`
