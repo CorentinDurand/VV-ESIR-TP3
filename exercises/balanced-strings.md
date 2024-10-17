@@ -66,4 +66,6 @@ void testMismatchedPairs() {
 }
 ```
 
-4. 
+4. By running the `mvn clean test pitest:mutationCoverage` command, we can easily evaluate our test suite :![Capture d’écran 2024-10-17 222224](https://github.com/user-attachments/assets/f4434e4f-e78d-423b-b432-cb1c0050a0b7)
+   The mutation score we received is 100%, all the mutants were killed so no need to add new test cases to upgrade our score.
+
