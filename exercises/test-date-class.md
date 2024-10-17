@@ -57,10 +57,10 @@ To create an effective test suite for your `Date` class using *Input Space Parti
 The constructor will be the same as `isvalidDate`.
 
 For `isValidDate` Method :
-    - Characteristics:
-        * Valid/Invalid year
-        * Valid/Invalid month
-        * Valid/Invalid day for a given month, handling also different month lengths and leap years
+-Characteristics:
+* Valid/Invalid year
+* Valid/Invalid month
+* Valid/Invalid day for a given month, handling also different month lengths and leap years
     - Blocks:
         * Year: valid (e.g., 2024), invalid (e.g., -1000)
         * Month: valid (1–12), invalid (<1, >12)
