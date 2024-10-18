@@ -26,31 +26,32 @@ Use the project in [tp3-balanced-strings](../code/tp3-balanced-strings) to compl
 
 ## Answer
 
-1. 
-
-I- Input Length (Empty vs Non-Empty)
+### 1. 
+#### I- Input Length (Empty vs Non-Empty)
 The first partition block considers whether the input string is empty or non-empty. An empty string is always considered balanced by definition, as there are no symbols to match. This is a special case that must be handled separately in the code. On the other hand, non-empty strings can contain various types of characters and must be further analyzed for balancing. These two cases ensure that both trivial and non-trivial strings are covered by the test cases.
 
-II- Presence of Grouping Symbols
+#### II- Presence of Grouping Symbols
 This partition block focuses on whether the string contains grouping symbols like parentheses, brackets, or braces. We divide this block into:
 
 - Strings with no grouping symbols: These are strings that contain only letters, numbers, or other non-grouping characters. Since no symbols need matching, such strings are considered balanced.
 - Strings with only grouping symbols: These strings contain only parentheses, braces, or brackets, which are the core symbols the method must evaluate. The function should check whether these symbols are properly balanced or not.
 - Strings with mixed content: These strings contain a mix of grouping symbols and non-grouping symbols. The function should ignore the non-grouping characters while checking for balance. This block ensures that the method handles realistic input containing a combination of symbols and regular text.
 
-III- Balanced vs. Unbalanced Grouping Symbols
+#### III- Balanced vs. Unbalanced Grouping Symbols
 Within the non-empty strings containing grouping symbols, we further partition based on whether the symbols are properly balanced. A string is considered balanced if every opening symbol has a matching closing symbol in the correct order. The unbalanced cases are divided into several subcategories:
 
 - Missing closing brackets: These are cases where there are unmatched opening symbols that never get closed.
 - Missing opening brackets: Here, closing symbols appear without a corresponding opening symbol.
 - Improper nesting: These cases involve symbols that are not nested correctly, where an inner set of symbols is closed before an outer one. These subcategories ensure that both simple and complex unbalanced scenarios are tested.
 
-IV- Type of Grouping Symbols
+#### IV- Type of Grouping Symbols
 This partition block separates inputs based on the types of grouping symbols used. Some strings contain only one type of grouping symbol, such as only parentheses or only brackets. These cases are simpler, as the method needs to match symbols of the same type. However, other strings may contain multiple types of grouping symbols, like a combination of parentheses, braces, and brackets. The method must correctly manage these different types and ensure that each opening symbol is matched by the correct type of closing symbol. Testing both cases ensures that the method can handle homogeneous and heterogeneous symbols accurately.
 
-2. After evaluating the statement coverage of the test cases, we achieved 100% coverage so we did not add any additionnal tests.
+### 2. 
+After evaluating the statement coverage of the test cases, we achieved 100% coverage so we did not add any additionnal tests.
 
-3. To satisfy Base Choice Coverage, we located predicates that uses more than two boolean operators. Then, we had to ensure that all possible outcomes are covered by the test cases. After reviewing the test cases, we decided to add these two tests : 
+### 3. 
+To satisfy Base Choice Coverage, we located predicates that uses more than two boolean operators. Then, we had to ensure that all possible outcomes are covered by the test cases. After reviewing the test cases, we decided to add these two tests : 
 
 ```java
 @Test
@@ -66,6 +67,7 @@ void testMismatchedPairs() {
 }
 ```
 
-4. By running the `mvn clean test pitest:mutationCoverage` command, we can easily evaluate our test suite :![Capture d’écran 2024-10-17 222224](https://github.com/user-attachments/assets/f4434e4f-e78d-423b-b432-cb1c0050a0b7)
+### 4. 
+By running the `mvn clean test pitest:mutationCoverage` command, we can easily evaluate our test suite :![Capture d’écran 2024-10-17 222224](https://github.com/user-attachments/assets/f4434e4f-e78d-423b-b432-cb1c0050a0b7)
    The mutation score we received is 100%, all the mutants were killed so no need to add new test cases to upgrade our score.
 
